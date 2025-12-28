@@ -1,0 +1,149 @@
+---
+description: Utility Script and Debug Guidelines for Astro Projects
+globs: 
+alwaysApply: false
+---
+# Astro Dev Scripts and Testing Utilities
+
+## 1. Script Usage Philosophy
+
+Astro projects are static-first — avoid runtime logic where possible. For dev support:
+
+1. **Use `npm` scripts** for one-off tasks  
+   Example: Linting, formatting, asset generation, validation
+
+   ```json
+   "scripts": {
+     "format": "prettier --write .",
+     "check:links": "node scripts/check-links.ts"
+   }
+````
+
+2. **Use local TypeScript utility files** for complex checks
+   Place inside `scripts/`, name descriptively, and run via `ts-node` or `node`.
+
+3. **Automate repetitive dev tasks**, not content logic
+   Don’t script page builds or routing — Astro handles that.
+
+---
+
+## 2. Script Standards
+
+### Structure
+
+* All utility scripts live in `/scripts`
+* Scripts must be named by function (e.g. `check-links.ts`, `gen-sitemap.ts`)
+* If running in Node, add a shebang and make executable with `chmod +x`
+
+### Error Handling
+
+Wrap all main logic in `try/catch` blocks.
+
+```ts
+try {
+  const result = await run();
+  console.log("✔ Success:", result);
+} catch (e) {
+  console.error("✘ Error:", e.message);
+  process.exit(1);
+}
+```
+
+### Output
+
+* Always output success/failure status clearly
+* Use `console.log()` for structured logs
+* Avoid verbose output unless debugging
+
+---
+
+## 3. Examples
+
+### ✅ Validate Internal Links
+
+```ts
+// scripts/check-links.ts
+import { readFileSync } from "fs";
+
+const html = readFileSync("dist/index.html", "utf-8");
+const links = [...html.matchAll(/href="(.*?)"/g)].map(([, link]) => link);
+console.log("Found links:", links);
+```
+
+### ✅ Generate Simple Sitemap
+
+```ts
+// scripts/gen-sitemap.ts
+const pages = ["", "about", "contact", "articles/designing-for-trust"];
+pages.forEach(p => console.log(`<url><loc>https://example.com/${p}</loc></url>`));
+```
+
+---
+
+## 4. Debugging Patterns
+
+1. Use `console.log()` — never silent failures
+2. Print performance timings when relevant
+3. Use `JSON.stringify(obj, null, 2)` for readable output
+4. Exit with correct code:
+
+   * `process.exit(0)` for success
+   * `process.exit(1)` for failure
+
+---
+
+## 5. Best Practices
+
+* **NEVER** use scripts to mutate Astro core files
+* **ALWAYS** isolate concerns in `scripts/`
+* **PREFER** static checks over runtime logic
+* **USE** Node-friendly, dependency-free tools when possible
+* **DOCUMENT** usage at the top of each script
+* **KEEP** scripts focused and named by intention
+
+---
+
+## 6. Documentation Example
+
+```ts
+// scripts/gen-sitemap.ts
+// Usage: node scripts/gen-sitemap.ts
+// Generates a basic sitemap for the deployed site
+```
+
+---
+
+## 7. Maintenance Reminders
+
+* Remove old or unused scripts
+* Keep script names consistent with project vocabulary
+* Review scripts when updating routes or structure
+* Use `.prettierignore` and `.eslintignore` if needed
+
+---
+
+## 8. Security Considerations
+
+* **NEVER** commit secrets or `.env` files
+* **ALWAYS** ignore personal script outputs via `.gitignore`
+* **VALIDATE** content loaded from disk (e.g., avoid `eval`)
+
+---
+
+## 9. Globs for Cursor Context
+
+```json
+"globs": [
+  "scripts/**/*.ts",
+  "package.json",
+  "astro.config.*"
+]
+```
+
+---
+
+## 10. Summary
+
+* Scripts support the build and design process, not replace Astro’s static site behaviour
+* Keep everything clean, documented, and easy to run
+* Think of scripts like local dev tools — not mini backends

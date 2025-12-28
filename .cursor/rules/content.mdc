@@ -1,0 +1,34 @@
+---
+description: 
+globs: "src/pages/articles/**/*.astro", "src/pages/case-studies/**/*.astro", "src/pages/scratch/**/*.astro"
+alwaysApply: false
+---
+# Content Guidelines
+
+## Articles
+- Essays, perspectives, and design reflections
+- Long-form Markdown or `.astro` files with frontmatter
+- Use `ArticleLayout.astro`
+- Frontmatter must include: `title`, `description`, `pubDate`, `tags`, `author`
+
+## Case Studies
+- Structured breakdowns of professional work
+- Use `CaseStudyLayout.astro`
+- Frontmatter includes:
+  - `client`, `industry`, `duration`, `challenge`, `solution`, `results`
+- Use semantic headings (`## Challenge`, `## Solution`, etc.)
+- Write in past tense, professional tone
+
+## Scratch Notes
+- Experiments, code play, creative technology
+- Use `ScratchLayout.astro` or embedded `.astro` components
+- Use tags like: `processing`, `d3js`, `python`, `micropi`, `gcode`, `css`
+- Add metadata to enable sorting (e.g. `technology`, `pubDate`, `title`)
+- You may embed canvas, iframe, or SVG directly
+
+## Style Tips
+- Keep headings consistent
+- Use semantic HTML in markdown (avoid deeply nested divs)
+- Don't overuse blockquotes or italics
+- Articles should end with a takeaway or invitation to reflect
+- Scratch posts can include code blocks, visuals, and links to repos

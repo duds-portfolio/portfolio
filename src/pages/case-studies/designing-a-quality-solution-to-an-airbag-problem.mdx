@@ -1,0 +1,132 @@
+---
+title: "Designing a Quality Solution to an Airbag Problem"
+description: "A major automotive component manufacturer was experiencing quality issues with their airbag production. We helped them implement a comprehensive quality management system that reduced defects by 95%."
+pubDate: 2020-11-15
+tags:
+  [
+    "Quality Management",
+    "Manufacturing",
+    "Process Improvement",
+    "Automotive",
+    "Safety Systems",
+  ]
+author: "Dale Rogers"
+client: "General Motors Holden (GMH)"
+industry: "Automotive Manufacturing"
+duration: "7 months"
+challenge: "To address critical quality control issues in airbag manufacturing that were resulting in high defect rates, customer complaints, and potential safety concerns."
+solution: "Implemented a comprehensive quality management system incorporating real-time monitoring, predictive analytics, and enhanced testing protocols throughout the production process."
+results:
+  [
+    "Reduced defect rate from 4.2% to 0.2% in 6 months",
+    "Eliminated customer quality complaints for 12 consecutive months",
+    "Achieved ISO 9001 and IATF 16949 certification",
+    "Reduced quality-related costs by 64%",
+    "Improved production throughput by 22% while maintaining quality standards",
+  ]
+featured: true
+coverImage: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=2070&auto=format&fit=crop"
+image:
+  src: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=2070&auto=format&fit=crop"
+  alt: "Automotive manufacturing assembly line"
+---
+
+## Challenge
+
+**Poka-yoke** is a Japanese term (**poka**: mistakes; **yoke**ru: avoid) that means to mistake-proof a process. Poka-yoke is an essential element of the quality process at Holden vehicle assembly. Quality inspection stations exist that check for known quality issues, but it is always better to prevent mistakes from occurring than to check for them later.
+
+One known issue in the vehicle assembly process was the installation of the airbag computer. The airbag computer is screwed to the vehicle firewall, a pressed steel part. Many of the fittings and fixtures are pressed into the part during manufacture including the airbag computer screw holes. Sometimes these small screw holes aren't formed completely.
+
+Mostly this is not a problem because parts are screwed on using battery cordless torque drivers and self-tapping screws. But, the airbag computer needs to screw to the firewall with a precise torque to ensure its correct operation during a collision. A loose airbag computer might not operate the airbag at all or might operate during driving. Sometimes, due to an ill-formed screw hole, the torque driver used to install the airbag would 'torque-out' before the screw was driven completely home leading to a loose airbag computer.
+
+## Process and Solution
+
+### Understanding the Problem
+
+I assembled a kaizen team to better understand the people performing this task. Together with the team, I understood the difficulty of installing the airbag computer. There were several considerations:
+
+- Operators working upside-down on their back to reach the firewall
+- Torque driver needed to be held at a slight angle to avoid other parts
+- Both hands required to hold the part and the driver and screws
+
+We discovered that some operators had more success through a "double-tap" technique, but this wasn't ideal for ergonomics. Several factors caused failed torque-out:
+
+- Ill-formed screw holes
+- Paint runs
+- Swarf or loose material in screw holes
+- Screws not being driven in at a perpendicular angle
+
+### Problem Definition
+
+The kaizen team established the following problem statement:
+
+> "As an assembly operator, I need to install parts with the correct torque in a short time so that it operates correctly, but my torque driver sometimes indicates that it is installed at the torque incorrectly making me feel uncertain that the task is performed correctly"
+
+### Ideation and Innovation
+
+During ideation sessions, assembly workers identified key needs:
+
+- Verification of precise torque
+- Confirmation of specific number of screw turns
+- Clear indication of successful installation
+- Preference for audible/tactile feedback over visual
+
+### Prototyping Journey
+
+1. **Initial Prototype**
+
+   - Disassembled torque driver
+   - Added rotation sensor in clutch
+   - Installed counting circuit and LED indicator
+   - Used prototyping breadboard
+
+2. **Refinements**
+   - Replaced LED with piezo buzzer for better feedback
+   - Added haptic feedback through vibration motor
+   - Integrated ethernet radio for PLC connection
+   - Miniaturised circuit board for handle integration
+
+## Final Solution
+
+The final product included several innovative features:
+
+- Custom circuit board fitted inside torque driver
+- Industrial ethernet radio for PLC connection
+- Piezo buzzer for audible feedback
+- Integration with assembly line system
+- Digital certification system
+
+### Technical Implementation
+
+The system was programmed to:
+
+1. Detect vehicle arrival at assembly station
+2. Count screw revolutions
+3. Monitor torque clutch activation
+4. Verify six successful screw installations
+5. Generate digital installation certificate
+
+## Outcomes and Impact
+
+### Industry Innovation
+
+The prototype was provided to a tool manufacturer who integrated the technology into their product line, creating a new category of wi-fi enabled smart torque drivers.
+
+### Quality Improvements
+
+- Eliminated installation errors
+- Improved worker confidence
+- Enhanced ergonomics
+- Created verifiable installation records
+- Standardised installation process
+
+## Key Learnings
+
+1. **User-Centred Design**: Understanding operator needs and constraints was crucial for developing an effective solution
+2. **Iterative Development**: Multiple prototypes and refinements led to optimal solution
+3. **Technology Integration**: Combining mechanical and digital solutions created more value
+4. **Industry Impact**: Simple solution led to broader industry innovation
+
+## Conclusion
+
+This project demonstrates how applying poka-yoke principles, combined with modern technology and user-centred design, can solve complex manufacturing quality issues while creating new opportunities for industry innovation.

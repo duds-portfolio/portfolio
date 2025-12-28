@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Progressive Offset Guilloché with Bézier, Orbiting Curve Points</title>
+<style>
+  body {
+    margin: 0;
+    overflow: hidden;
+    background: white;
+    font-family: sans-serif;
+  }
+  #controls {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    background: rgba(255,255,255,0.85);
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.2);
+    z-index: 10;
+  }
+  #controls label {
+    display: block;
+    margin-top: 5px;
+  }
+  #controls input {
+    width: 60px;
+  }
+  #controls button {
+    margin-top: 8px;
+    width: 100%;
+  }
+</style>
+</head>
+<body>
+
+<div id="controls">
+  <label>Offsets: <input type="number" id="offsets" value="5" min="1"></label>
+  <label>Points: <input type="number" id="points" value="12" min="3"></label>
+  <label>Offset Distance: <input type="number" id="offsetDistance" value="5" step="0.5"></label>
+  <label>Min Point Distance: <input type="number" id="minDistance" value="40" step="1"></label>
+  <button id="updateBtn">Update</button>
+  <button id="randomBtn">Randomise</button>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/p5@1.9.2/lib/p5.min.js"></script>
+<script>
+let basePoints = [];
+let orbitData = [];
+let offsetPaths = [];
+let numOffsets = 5;
+let numPoints = 12;
+let offsetDistance = 5;
+let minDistance = 40;
+
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+  colorMode(HSB, 255);
+  noFill();
+  generateAndDraw();
+
+  document.getElementById('updateBtn').addEventListener('click', () => {
+    getParams();
+    generateAndDraw();
+  });
+
+  document.getElementById('randomBtn').addEventListener('click', () => {
+    numOffsets = int(random(3, 10));
+    numPoints = int(random(5, 20));
+    offsetDistance = random(2, 10);
+    minDistance = random(20, 60);
+    setParams();
+    generateAndDraw();
+  });
+}
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+  generateAndDraw();
+}
+
+function getParams() {
+  numOffsets = int(document.getElementById('offsets').value);
+  numPoints = int(document.getElementById('points').value);
+  offsetDistance = float(document.getElementById('offsetDistance').value);
+  minDistance = float(document.getElementById('minDistance').value);
+}
+
+function setParams() {
+  document.getElementById('offsets').value = numOffsets;
+  document.getElementById('points').value = numPoints;
+  document.getElementById('offsetDistance').value = nf(offsetDistance, 1, 1);
+  document.getElementById('minDistance').value = nf(minDistance, 1, 1);
+}
+
+function generateAndDraw() {
+  generatePoints();
+  generateOrbitData();
+  background(255);
+}
+
+function generatePoints() {
+  basePoints = [];
+  let attempts = 0;
+  let safeRadius = min(width, height) / 2 - numOffsets * offsetDistance - 20;
+
+  while (basePoints.length < numPoints && attempts < 5000) {
+    attempts++;
+    let angle = random(TWO_PI);
+    let r = safeRadius * 0.7 + random(-safeRadius * 0.3, safeRadius * 0.3);
+    let x = cos(angle) * r + random(-30, 30);
+    let y = sin(angle) * r + random(-30, 30);
+    let candidate = createVector(x, y);
+
+    let tooClose = basePoints.some(p => p.dist(candidate) < minDistance);
+    if (!tooClose) {
+      basePoints.push(candidate);
+    }
+  }
+}
+
+function generateOrbitData() {
+  orbitData = basePoints.map(() => {
+    return {
+      radius: random(5, 20),
+      speed: random(0.005, 0.02),
+      angleOffset: random(TWO_PI)
+    };
+  });
+}
+
+function draw() {
+  background(255);
+  push();
+  translate(width / 2, height / 2);
+
+  let curvePoints = basePoints.map((pt, i) => {
+    let orbit = orbitData[i];
+    let angle = frameCount * orbit.speed + orbit.angleOffset;
+    return createVector(
+      pt.x + cos(angle) * orbit.radius,
+      pt.y + sin(angle) * orbit.radius
+    );
+  });
+
+  offsetPaths = [];
+
+  for (let o = 0; o <= numOffsets; o++) {
+    let offsetPath = [];
+    for (let i = 0; i < curvePoints.length; i++) {
+      let curr = curvePoints[i];
+      let next = curvePoints[(i + 1) % curvePoints.length];
+      let dir = p5.Vector.sub(next, curr).heading();
+      let offsetAngle = dir - HALF_PI;
+
+      let dist = offsetDistance * o;
+      let ox = cos(offsetAngle) * dist;
+      let oy = sin(offsetAngle) * dist;
+
+      offsetPath.push(createVector(curr.x + ox, curr.y + oy));
+    }
+    offsetPaths.push(offsetPath);
+  }
+
+  for (let p = 0; p < offsetPaths.length; p++) {
+    let path = offsetPaths[p];
+    let hueShift = map(p, 0, offsetPaths.length, 0, 255);
+
+    stroke(hueShift, 200, 255);
+    strokeWeight(1);
+    drawingContext.shadowBlur = 8;
+    drawingContext.shadowColor = color(hueShift, 200, 255, 100);
+    noFill();
+    beginShape();
+
+    for (let i = 0; i < path.length; i++) {
+      let prev = path[(i - 1 + path.length) % path.length];
+      let curr = path[i];
+      let next = path[(i + 1) % path.length];
+
+      let dirPrev = p5.Vector.sub(curr, prev).normalize();
+      let dirNext = p5.Vector.sub(next, curr).normalize();
+
+      let handleLen = 0.3 * p5.Vector.dist(curr, next);
+      let control1 = p5.Vector.add(curr, p5.Vector.mult(dirPrev, handleLen));
+      let control2 = p5.Vector.sub(next, p5.Vector.mult(dirNext, handleLen));
+
+      if (i === 0) {
+        vertex(curr.x, curr.y);
+      }
+
+      bezierVertex(control1.x, control1.y, control2.x, control2.y, next.x, next.y);
+    }
+
+    endShape(CLOSE);
+  }
+  pop();
+}
+</script>
+</body>
+</html>

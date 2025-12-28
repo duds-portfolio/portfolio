@@ -1,0 +1,31 @@
+---
+description: 
+globs: src/components/*Layout.astro
+alwaysApply: false
+---
+# Layout Component Standards
+
+## Shared Expectations
+- Accept `frontmatter` props
+- Use `<Head>` to populate `<title>`, `meta` from props
+- Render content via `<slot />`
+- Include global `Header` and `Footer` components
+- Avoid logic in layout — layout is structure only
+
+## ArticleLayout
+- Use article landmark tag
+- Show title, date, author
+- Include optional cover image at top
+- Use `prose` class from Tailwind Typography
+
+## CaseStudyLayout
+- Use semantic sections: challenge, solution, process, outcomes
+- Optionally include callout boxes
+- Use grid or multi-column layout if needed
+- Results can be rendered as a `<ul>`
+
+## ScratchLayout
+- Show title, date, and tag list
+- Allow flexible embedded media (canvas, iframe, images)
+- Use `prose` for narrative content
+- Allow full-width sections for interactive sketches

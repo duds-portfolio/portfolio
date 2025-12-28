@@ -1,0 +1,98 @@
+---
+import Button from './ui/Button.astro';
+---
+<header id="site-header" class="w-full py-8 px-10 flex items-center justify-between fixed top-0 left-0 z-50 transition-opacity duration-500" style="background: transparent; width: 100%;">
+  <div class="text-base md:text-lg font-sans tracking-tight" style="color: #262626; font-weight: normal;">
+    <a id="obf-email" href="#" aria-label="Email Dale Rogers" class="hover:underline focus:underline">
+      <span>&#104;&#101;&#108;&#108;&#111;&#64;&#100;&#97;&#108;&#101;&#114;&#111;&#103;&#101;&#114;&#115;&#46;&#99;&#111;&#109;&#46;&#97;&#117;</span>
+    </a>
+    <script is:inline>
+      const email = ['hello','dalerogers.com.au'].join('@');
+      const link = document.getElementById('obf-email');
+      if (link) {
+        link.setAttribute('href', 'mailto:' + email);
+      }
+    </script>
+  </div>
+  <nav>
+    <ul class="flex gap-10">
+      <li><Button href="/case-studies" label="Case Studies" variant="nav" /></li>
+      <li><Button href="/articles" label="Articles" variant="nav" /></li>
+      <li><Button href="/contact" label="Contact" variant="nav" /></li>
+    </ul>
+  </nav>
+  <script is:inline>
+    function navSparkles(sparkleLayerNav) {
+      if (!sparkleLayerNav) return;
+      sparkleLayerNav.innerHTML = '';
+      const count = 2 + Math.floor(Math.random() * 2);
+      for (let i = 0; i < count; i++) {
+        const size = 2 + Math.random() * 3;
+        const left = Math.random() * 100;
+        const delay = Math.random() * 0.5;
+        const sparkle = document.createElement('span');
+        sparkle.style.position = 'absolute';
+        sparkle.style.left = `${left}%`;
+        sparkle.style.bottom = `${2 + Math.random() * 4}px`;
+        sparkle.style.width = `${size}px`;
+        sparkle.style.height = `${size}px`;
+        sparkle.style.borderRadius = '50%';
+        sparkle.style.background = 'rgba(255,255,255,0.6)';
+        sparkle.style.boxShadow = '0 0 6px 1px #fff';
+        sparkle.style.opacity = '0';
+        sparkle.style.pointerEvents = 'none';
+        sparkle.style.animation = `sparkle-fade 1.2s ${delay}s linear forwards`;
+        sparkleLayerNav.appendChild(sparkle);
+      }
+    }
+    document.querySelectorAll('[data-sparkle-btn]').forEach(btn => {
+      btn.addEventListener('mouseenter', function() {
+        const sparkleLayerNav = this.querySelector('[data-sparkle]');
+        if (sparkleLayerNav) {
+          sparkleLayerNav.style.display = 'block';
+          navSparkles(sparkleLayerNav);
+        }
+      });
+      btn.addEventListener('focus', function() {
+        const sparkleLayerNav = this.querySelector('[data-sparkle]');
+        if (sparkleLayerNav) {
+          sparkleLayerNav.style.display = 'block';
+          navSparkles(sparkleLayerNav);
+        }
+      });
+      btn.addEventListener('mouseleave', function() {
+        const sparkleLayerNav = this.querySelector('[data-sparkle]');
+        if (sparkleLayerNav) {
+          sparkleLayerNav.style.display = 'none';
+          sparkleLayerNav.innerHTML = '';
+        }
+      });
+      btn.addEventListener('blur', function() {
+        const sparkleLayerNav = this.querySelector('[data-sparkle]');
+        if (sparkleLayerNav) {
+          sparkleLayerNav.style.display = 'none';
+          sparkleLayerNav.innerHTML = '';
+        }
+      });
+    });
+  </script>
+  <script is:inline>
+    // Fade out header after scrolling past the hero
+    document.addEventListener('DOMContentLoaded', () => {
+      const header = document.getElementById('site-header');
+      const marker = document.getElementById('hero-scroll-marker');
+      if (!header || !marker) return;
+      const observer = new window.IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            header.classList.remove('opacity-0');
+          } else {
+            header.classList.add('opacity-0');
+          }
+        },
+        { root: null, threshold: 0 }
+      );
+      observer.observe(marker);
+    });
+  </script>
+</header> 

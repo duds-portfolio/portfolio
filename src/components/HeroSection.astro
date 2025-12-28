@@ -1,0 +1,27 @@
+---
+import Button from './ui/Button.astro';
+import Avatar from './ui/Avatar.astro';
+export interface Props {}
+---
+<!-- HERO SECTION - Single centred column with avatar above hero copy -->
+<section class="h-[60vh] flex items-center px-6 rounded-b-[6rem] shadow-hero" style="background-color: #D9D8D7; margin-top: 0; padding-top: 0;">
+  <div class="max-w-2xl mx-auto w-full flex flex-col items-center justify-center relative z-0 pt-24">
+    <div class="flex flex-col items-center w-full">
+      <div class="mb-6"><Avatar size={96} src="/images/DaleRogersAvatar.png" alt="Dale Rogers avatar" /></div>
+      <p class="text-3xl md:text-6xl font-extrabold leading-tight text-center" style="color: #262626;">
+        Designing better services for lasting impact.
+      </p>
+      {/* TODO: Introduce A/B testing for the button copy (e.g., "Let’s Work Together" vs. "Start Your Project") */}
+      <Button 
+        href="/contact" 
+        label="Get in touch" 
+        variant="hero" 
+        class="mt-10 w-max rainbow-sparkle-btn"
+      >
+        <svg slot="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5 ml-2 inline align-middle"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 7.5h9m0 0v9m0-9L7.5 16.5" /></svg>
+      </Button>
+    </div>
+  </div>
+  <!-- Place the marker as the last child of the hero section -->
+  <div id="hero-scroll-marker" style="height: 1px; width: 1px; pointer-events: none;"></div>
+</section> 

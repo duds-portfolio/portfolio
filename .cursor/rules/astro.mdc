@@ -1,0 +1,95 @@
+---
+description: Rails 8 specific rules and guidelines for the Social Script project. These rules complement the main .cursorrules file with detailed Rails-specific practices.
+globs: *.astro", "*.ts", "*.css", "astro.config.*", "public/**/*", "src/**/*
+alwaysApply: false
+---
+# Astro Project Guidelines
+
+## 1. Astro Core Principles
+
+**💡 Prefer simple static composition over dynamic logic**
+
+- Use `.astro` files with hardcoded HTML and props unless logic is unavoidable
+- Avoid `.mdx` or content collections unless you need filtering, sorting, or markdown-based publishing
+- Prefer `<slot />` and composition over layout inheritance
+
+**🔧 Dev and Build Practices**
+
+- Use `npm run dev` for local preview
+- Always preview changes in browser before committing
+- Keep `astro.config.mjs` minimal and explicit
+- Avoid using integrations you don't need (e.g. don't install Tailwind unless you're using it)
+
+## 2. Development Standards
+
+### 1. **Component Structure**
+- Components live in `/src/components`
+- Prefer single-purpose components
+- Avoid over-abstraction for one-off content
+- Only create a component if reused across pages
+
+### 2. **Page Patterns**
+- All pages live in `/src/pages`
+- Keep routes flat (`/about.astro`, `/contact.astro`)
+- Use subfolders only for organised content types (e.g. `articles/`, `case-studies/`, `scratch/`)
+
+### 3. **Styling**
+- Global styles live in `src/styles/global.css`
+- Prefer CSS variables or utility classes
+- Avoid deeply nested styles
+- Use `@apply` or component-level class patterns if Tailwind is added later
+
+### 4. **Performance**
+- Avoid unnecessary client-side JavaScript
+- Lazy load large images
+- Use `<img loading="lazy">` and responsive image sources
+- Inline critical CSS if needed, but keep things simple by default
+
+### 5. **Accessibility & Semantics**
+- Use semantic HTML: `<main>`, `<header>`, `<footer>`, `<article>`, `<section>`
+- All images must include `alt` text
+- Links must describe their destination
+- Avoid empty or redundant tags
+
+## 3. Directory Structure (Astro)
+
+/src
+├── pages/
+│ ├── index.astro
+│ ├── about.astro
+│ ├── contact.astro
+│ ├── colophon.astro
+│ ├── articles/
+│ ├── case-studies/
+│ └── scratch/
+├── components/
+├── styles/
+│ └── global.css
+├── data/
+└── layouts/
+
+markdown
+Copy
+Edit
+
+## 4. Tech Stack Overview
+
+- **Framework**: Astro (static-first)
+- **Styling**: Vanilla CSS (optional Tailwind)
+- **Content**: Hardcoded `.astro` templates (no CMS or markdown for now)
+- **Hosting**: Vercel or Netlify
+- **Tooling**: Cursor, VS Code
+- **Versioning**: Git + GitHub
+
+## 5. Project Rules and Reminders
+
+1. Prefer static `.astro` files with inline content over abstracted `.json` or `.md`
+2. Only add complexity (Tailwind, content collections, MDX) when pain arises
+3. Keep components minimal and composable
+4. Don't use a library if you can write 5 lines of HTML instead
+5. Write content like it’s going to be read in 10 years — resilient and clear
+6. Structure code for readability over cleverness
+7. Keep `public/` clean and purposeful (icons, images only)
+8. Don’t overuse `<Card>` components — use tables, sections, or headers if clearer
+9. Commit frequently, keep changesets small
+10. Everything should serve clarity and control — not convenience or abstraction

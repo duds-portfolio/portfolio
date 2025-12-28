@@ -1,0 +1,95 @@
+---
+title: "Will AI mean the end of consulting"
+description: "AI supported writing is hitting the big time, and it's good. What do business writers need to know to embrace and learn from this revolutionary technology?"
+pubDate: "2025-04-22"
+author: "Dale Rogers"
+tags: ["AI", "Automation", "Futures Thinking"]
+---
+
+# Will AI mean the end of consulting
+
+Recently I have been noticing a lot of talk about Artificial Intelligence (AI). The designers of these AI systems use [Machine Learning](https://www.techtarget.com/searchenterpriseai/definition/machine-learning-ML) (ML) and neural networks to provide models with a lot of training data, and over time the AI observes patterns that it can use to come up with solutions to problems. I have been reading about prompt engineering, a technique where creators describe written prompts that the AI consumes and develops a response. Prompt engineering is used in [Natural Language Processing](https://en.wikipedia.org/wiki/Natural_language_processing) (NLP) and has other applications in computer vision and robotics.
+
+You may have seen prompt engineering used on Twitter or Instagram, where you will have seen fantastic images of an _astronaut riding a horse in a moon crater_ and the _girl with the pearl earring in the style of Hiroshi Yoshida._
+
+![](http://dalerogers.com.au/shared/astronaut-riding-a-horse-on-the-moon.png) Astronaut riding a horse on the moon. Created with MidJourney ![](http://dalerogers.com.au/shared/girl-with-the-pearl-earing-in-the-style-of-hiroshi-yoshida.png) Girl with a pearl earring in the style of Hiroshi Yoshida. Created with Midjourney
+
+Artificial Intelligence (AI) will be one of the most significant innovation challenges in the next decade. If we know that AI will change our lives, we can see that it will change consulting too. But the question is more about when AI will affect consulting. The answer is now.
+
+After attending the recent EDTAS Symposium on quantum computing, I noticed side conversations about AI-supported architecture, design, image creation, image analysis and many other ways AI impacts today's world. And who can miss the impact tools like [CrAIyon](https://www.craiyon.com/) and [DALL-E 2](https://openai.com/dall-e-2/) have had on social media? These tools have caused great excitement online, with millions of amateur prompt engineers and visual poets creating funny and engaging images. I made the images rendered above using a tool called [MidJourney Bot](https://www.midjourney.com/auth/signin/).
+
+The excitement around AI made me wonder what the future of AI-assisted management consulting is. Many organisations use AI for various business applications, such as data analysis and customer service. For example, Amazon uses AI to recommend products to customers based on their previous purchase history. Businesses, governments and academia use AI to improve processes and operations and to discover trends and patterns. But how can consultants take advantage of the AI renaissance?
+
+Organisations often use AI systems in particular contexts with bespoke software development. Some examples of AI are automated contracts analysis or operational data analysis to identify bottlenecks and inefficiencies. In a previous role, I used specific bespoke AI software to trawl millions of property contracts, leases, licences, and deeds to identify risks and shortcomings in the estate portfolio of Australia's third largest employer. The AI analysed the documents, many of which digitised copies of documents from the last one hundred and fifty years using Optical Character Recognition (OCR) and Azure Cognitive models to identify contractual risks that required renegotiation to insert more modern clauses. These systems are complex, expensive and have considerable technical debt requiring skilled developers and information architects.
+
+> I wanted something simple, inexpensive and accessible, which I can use now in my day-to-day work.
+
+A description of what I want from AI writing.
+
+There is a perception that AI is still in its early stages and that many things need to be improved before it becomes mainstream. That is true, and AI can suffer from significant and invisible biases. Implementation can be complex and expensive and require technical skills and resources, resulting in unpredictable results.
+
+But I'm here to tell you that you can use AI now and show you how to do it.
+
+## How I discovered AI writing
+
+I decided to set myself a challenge. I would rewrite an archived bid in three days. And I did; you can find the sample bid attached at the end of this article. My initial plan was to use Natural Language Processing (NLP) to help me with the process. And after a quick search, I discovered Generative Pre-trained Transformer (GPT-3), an AI model trained on vast amounts of textual content to produce high-quality text content that fooled even the researchers who created it.
+
+I Installed the GPT-3 Application Programming Interface on my computer and fired up a Terminal Command Line Interface (CLI). My first experimental API prompt was:
+
+`[Hello, World. This is a paragraph!]`
+
+And the response was:
+
+`[The text of this paragraph is the random text generated using a paragraph generator.]`
+
+I was excited at this simple response. But the API CLI was clunky. It wasn't as simple as cutting and pasting the bid request in, and voilà, the AI created a fully formed bid response.
+
+In my experimentation, I discovered the more prompt text you feed the model, the more significant variability in the response. For example, a user's written prompt `[I think]` will be matched with a reply `[therefore I am]`most of the time. But not always. Sometimes it will be `[therefore I believe]` or `[so I believe]` or `[and I know]`. Whereas much longer prompt text results create more divergent responses, for example, `[I think it will rain tomorrow but]` and the model responded with `[who knows]`, `[I don't have any other ideas]` and `[the sun will come out in the afternoon]`.
+
+Another lesson from my practice with GPT-3 API is that it's not an accessible writing environment. Each prompt must be fed individually and in sequence. This means lots of cut-and-paste work from my notebook to the API CLI. Further, prompts require individual parameters to be set, so editing is necessary after feeding a prompt to ensure parameters are used correctly to create the desired result.
+
+Parameters include language model (currently only English), number of epochs to train on data, vocabulary size, and which kind of training to use beam search or checkpointing. For example, using larger vocabulary sets or increasing the number of epochs provides better results. Still, when writing with a purpose, the AI is more likely to go off on a tangent and start trying to write poetry or articles that have nothing to do with the topic at hand.
+
+I soon realised that attempting to write in the API environment would not work. I needed another solution. I needed the API implemented in a purpose-built editor, so I could write structured prose and experiment with writing content. I considered writing my editor in _[Node JS](https://nodejs.org/en/),_ but that would take more time and skill than my amateur developer skill set would allow.
+
+After watching a few YouTube videos about AI writing and stumbling around AI writing forums, I discovered [chibi.ai](https://chibi.ai). Chibi is an AI writing editor that implements the GPT-3 API in a simple, easy-to-use text editor. It gives the author complete control over what gets written. It allows the author to develop tunings that support a particular tone of voice, rewrite existing content, summarise or list content and turn lists into paragraphs, among many others.
+
+The application offers an easy-to-use interface that allows the user to create 'tunings' that influence the tone of voice, sentence structure and word choice. The author can make these 'tunings' in a matter of minutes. The text's tone can then be trained (for example, legal, serious, or friendly). Authors can also create a 'tuning' for their target audience Chibi can be trained to write for young children, academics, subject matter experts or people with a specific demographic. Authors can teach the AI to use slang or regional dialects like African American Vernacular English (AAVE) and Aboriginal English (AbE). The tunings are almost endless.
+
+## How AI-assisted writing works
+
+Writing with AI assistance is straightforward. It works like this, the user writes a few words or a sentence, and then the AI completes the sentence or creates a paragraph based on the prompt. By taking the writing in small bites, the author controls what gets written and what does not, and as the AI has more content to work with, it gets better over time. As the author writes more sentences and paragraphs, the machine learning model predicts what the 'author' will likely write next. And can write longer sentences and even paragraphs on its own.
+
+By 'dancing' with the AI in this way, the author stays in control of the content and purpose of the writing, and the AI can support the writing process by generating the supporting text with a high degree of accuracy. The author can focus on the ideas and concepts they want to express, and other prose is generated for them automatically by the AI. They can then edit, alter, or discard as they see fit.
+
+Good writing takes a lot of practice. If you think about it, human language is quite challenging for good writing. You must understand grammar and vocabulary fundamentally and express yourself effectively to convey your ideas to others. Even if you do all these things well, there are still things you can do better. AI assistance can, for example, express your thoughts more efficiently or develop more effective word choices to help you communicate better with your audience. The GPT-3 model and a writing application can do some things that authors sometimes find difficult, such as writing prose that's easy to understand and conveys the right message.
+
+## Why AI-assisted writing works
+
+AI writing works by feeding the AI with texts on various topics and writing styles. Then the AI writes on its own just like a human does, but in a very different way. With AI writing, the texts are written by a deep learning neural network. It learns the patterns from the data it's fed and then applies them to the new content it creates. The largest and most popular AI text model is Google's BERT model, which leverages the power of neural networks to learn language representations from an extensive collection of pre-processed texts into fixed-length vectors. GPT-3 is another popular text generation model that leverages the power of recurrent neural networks to generate longer sentences by learning from a vast dataset of books.
+
+You might be wondering how does the GPT-3 text model work? The GPT-3 text model parses a sentence into different parts, such as nouns, verbs, adjectives, adverbs, and pronouns. It also identifies relationships between these parts and determines which words should go in the sentence. Finally, it uses the language model to generate text based on these grammatical relationships. Ultimately, the model creates textual representations of connections from the input sentence database and the database used for named entity recognition. For example, given a sentence like 'The dog chased the cat', the GPT-3 would recognise a relationship between 'dog' and 'cat' and generate new sentences like 'The cat chased the dog' or 'The dog was chasing a cat.'
+
+The model uses the statistical likelihood that a word will occur in a sentence based on the context. For example, the term 'cat' is more likely to follow 'the' than 'the', 'their' or 'to'. All words have a weighted relationship score with every other word. This scoring model is trained from a large corpus of text. The model also 'learns' as it is used to adjust the scores based on previous text. The editing application with its tunings can pre-load text that influences the model scoring and affects future writing.
+
+## The ethics of AI-assisted writing
+
+What are some of the ethical problems raised by AI content? The first concern that comes to mind is accuracy. Suppose the model is developing content used to inform, for example, a news article or written report. In that case, it has the potential to misinform the reader if it receives incorrect data or data that is not reliable. Particularly given the rise in post-truth politics and fake news, it is concerning that a machine could write inaccurately with
+
+For example, an AI assistant could create incorrect or misleading information without anyone realising it. This could result in inaccurate information or misinformation being sent to our audience. This could have dangerous consequences, as incorrect or misleading information could lead to people making poor decisions. For these reasons, it's crucial that our writing is accurate and reliable when using AI assistance. And that human authors and editors carefully review the content before it is published.
+
+Another ethical problem created by AI-assisted writing is that writers can use AI to mislead the source of the work. AI writing's ability to mimic a person's written tone, style, and content make it very easy to pass off a written work as someone else's content.
+
+Copying the written style of an author is also problematic for authors who put a lot of effort into crafting a unique writing style and brand. Using another author's written style could lead to plagiarism. For example, J.K. Rowling spent years preparing the Harry Potter series. She put love and effort into creating memorable characters, complex plots, and a unique writing style. Using an AI to imitate J.K. Rowling s unique writing style is akin to stealing her intellectual property (IP).
+
+## Conclusion
+
+AI-assisted writing is here and now and will be an increasing part of our future workflows. I will continue using Chibi to support and assist my writing but will not use AI to replace myself or other writers to create original content for my clients. I encourage you to experiment with AI-assisted writing too. It can support your writing by inspiring new ideas. It can assist in fleshing out your ideas into fully developed content. And it can help you organise your thoughts when writing long pieces, reports, or articles. It can even help you edit your work to catch mistakes you missed while writing. It will make your writing more efficient and save you time in the long run.
+
+> We cannot seek achievement for ourselves and forget about progress and prosperity for our community... Our ambitions must be broad enough to include the aspirations and needs of others, for their sakes and for our own.
+
+Cesar Chavez
+
+AI writing doesn't replace the author or good research and thinking skills; it just helps with the tedious tasks of writing and editing. But don't forget that AI-assisted authorship has risks too. We need to carefully proof and fact-check our writing when using the AI assistant tool because sometimes it can provide ideas that conflict with what we already have in our notes or research on the topic. Remember that you are responsible for your written work and content. Particularly in consulting writing, we must be factual, correct, and precise, so always review your work and have an editor or colleague double-check when using AI assistance tools with your writing.
+
+Let's discuss using AI assistance in our work. What do you think about AI-assisted writing? Are you concerned about losing your job to AI? Does AI have ethical implications for writers? How should we represent our work with clients when writing with AI assistance?

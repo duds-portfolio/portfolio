@@ -1,0 +1,25 @@
+---
+export interface Props {
+  open: boolean;
+  title?: string;
+  onClose?: () => void;
+}
+const { open, title, onClose } = Astro.props;
+---
+{open && (
+  <div class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+    <div class="bg-white rounded-lg shadow-lg max-w-lg w-full p-6 relative" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      {onClose && (
+        <button class="absolute top-2 right-2 text-gray-400 hover:text-gray-700" aria-label="Close" onclick="this.dispatchEvent(new CustomEvent('close-modal', { bubbles: true }))">&times;</button>
+      )}
+      {title && <h2 id="modal-title" class="text-lg font-semibold mb-4">{title}</h2>}
+      <slot />
+      {onClose && (
+        <script type="module" is:inline>{`
+          document.currentScript.parentElement.querySelector('button[aria-label=\'Close\']').addEventListener('close-modal', () => { window.onModalClose && window.onModalClose(); });
+          window.onModalClose = ${onClose.toString()};
+        `}</script>
+      )}
+    </div>
+  </div>
+)} 

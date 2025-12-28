@@ -1,0 +1,79 @@
+---
+import Header from '../components/Header.astro';
+export interface Props {
+  title: string;
+  pubDate?: string;
+  tags?: string[];
+}
+const { title, pubDate, tags } = Astro.props;
+
+// TEMP: List of all images in /public/images for the dev image switcher
+const images = [
+  '/images/hero-image.jpg',
+  '/images/nikhita-singhal-uzEPOK00UAg-unsplash.jpg',
+  '/images/max-kolganov-MvKy-zhHD2Q-unsplash.jpg',
+  '/images/davide-bodini-zL6oo9VhdJ0-unsplash.jpg',
+  '/images/moritz-karst-5H3cZJs9bBY-unsplash.jpg',
+  '/images/magnus-ostberg-zRykLuoSaCg-unsplash.jpg',
+  '/images/guillaume-revxuIor0nY-unsplash.jpg',
+  '/images/chandler-cruttenden-9CIphgn9wA8-unsplash.jpg',
+  '/images/chen-yichun-Fd9784c2F2Y-unsplash.jpg',
+  '/images/ryan-stone-_4MkAq-Aycg-unsplash.jpg',
+  '/images/h-heyerlein-BsWgMBfb208-unsplash.jpg',
+  '/images/octavio-fossatti-HlWctEa8YH0-unsplash.jpg',
+  '/images/ross-sokolovski-UAFXj9dRpwo-unsplash.jpg',
+];
+---
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={title} />
+    {pubDate && <meta name="pubdate" content={pubDate} />}
+    {tags && <meta name="keywords" content={tags.join(', ')} />}
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/src/styles/global.css" />
+  </head>
+  <body class="site-body font-sans">
+    <Header />
+    <slot name='hero' />
+    <slot />
+    <footer class="mt-24 bg-neutral-900 text-white py-12 px-6">
+      <div class="max-w-6xl mx-auto grid md:grid-cols-4 gap-8">
+        <div>
+          <h2 class="font-bold text-lg mb-2">Navigation</h2>
+          <ul class="space-y-1">
+            <li><a href="/" class="hover:underline text-white">Home</a></li>
+            <li><a href="/about" class="hover:underline text-white">About</a></li>
+            <li><a href="/case-studies" class="hover:underline text-white">Case Studies</a></li>
+            <li><a href="/articles" class="hover:underline text-white">Articles</a></li>
+            <li><a href="/contact" class="hover:underline text-white">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2 class="font-bold text-lg mb-2">Legal</h2>
+          <ul class="space-y-1">
+            <li><a href="/colophon" class="hover:underline text-white">Colophon</a></li>
+            <li><a href="/privacy-policy" class="hover:underline text-white">Privacy Policy</a></li>
+            <li><a href="/terms-of-service" class="hover:underline text-white">Terms of Service</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2 class="font-bold text-lg mb-2">Contact</h2>
+          <ul class="space-y-1">
+            <li><a href="mailto:hello@yourdomain.com" class="hover:underline text-white">hello@yourdomain.com</a></li>
+            <li><a href="https://www.linkedin.com/in/dale-rogers/" class="hover:underline text-white" target="_blank">LinkedIn</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2 class="font-bold text-lg mb-2">Acknowledgement</h2>
+          <p class="text-sm">I acknowledge the Traditional Owners of the land on which I work and pay my respects to Elders past, present, and emerging.</p>
+        </div>
+      </div>
+      <div class="mt-8 text-center text-xs text-white">© 2025 Dale Rogers. All rights reserved.</div>
+    </footer>
+  </body>
+</html> 

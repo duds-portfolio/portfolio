@@ -1,0 +1,127 @@
+---
+export interface Props {
+  href?: string;
+  label: string;
+  variant?: 'primary' | 'secondary' | 'hero' | 'nav';
+  class?: string;
+  icon?: any; // Optional icon component
+}
+
+const { href = '#', label, variant = 'primary', class: extraClass = '', icon } = Astro.props;
+---
+
+{variant === 'hero' ? (
+  <div class="relative inline-block w-max">
+    <span class="rainbow-shadow-btn__shadow"></span>
+    <span class="hero-sparkles"></span>
+    <a
+      href={href}
+      class={`bg-[#262626] text-[#f2f2f2] rainbow-shadow-btn font-semibold text-lg rounded-full px-6 py-2 transition-colors duration-200 inline-block z-30 ${extraClass}`.replace(/\s+/g, ' ').trim()}
+    >
+      {label}
+      <slot />
+      <slot name="icon" />
+    </a>
+    <script is:inline>
+      const heroWrapper = document.currentScript.parentElement;
+      const sparkleLayerHero = heroWrapper.querySelector('.hero-sparkles');
+      function randomSparkles() {
+        if (!sparkleLayerHero) return;
+        sparkleLayerHero.innerHTML = '';
+        const count = 4 + Math.floor(Math.random() * 3);
+        for (let i = 0; i < count; i++) {
+          const size = 3 + Math.random() * 5;
+          const left = Math.random() * 100;
+          const delay = Math.random() * 1.5;
+          const sparkle = document.createElement('span');
+          sparkle.style.position = 'absolute';
+          sparkle.style.left = `${left}%`;
+          sparkle.style.bottom = `${2 + Math.random() * 6}px`;
+          sparkle.style.width = `${size}px`;
+          sparkle.style.height = `${size}px`;
+          sparkle.style.borderRadius = '50%';
+          sparkle.style.background = 'rgba(255,255,255,0.7)';
+          sparkle.style.boxShadow = '0 0 8px 2px #fff, 0 0 24px 8px #fff';
+          sparkle.style.opacity = '0';
+          sparkle.style.pointerEvents = 'none';
+          sparkle.style.animation = `sparkle-fade 2.5s ${delay}s cubic-bezier(0.2,0.8,0.2,1) forwards`;
+          sparkleLayerHero.appendChild(sparkle);
+        }
+      }
+      randomSparkles();
+      setInterval(randomSparkles, 3000);
+    </script>
+  </div>
+) : variant === 'nav' ? (
+  <div class="relative inline-block w-max">
+    <span class="nav-shadow"></span>
+    <span class="nav-sparkles"></span>
+    <a
+      href={href}
+      class="nav-btn border-2 border-[#262626] rounded-full px-6 py-2 transition-colors duration-200 inline-block z-30 relative bg-[#d9d8d7] text-[#262626] hover:bg-[#262626] hover:text-[#f2f2f2] focus:bg-[#262626] focus:text-[#f2f2f2]"
+    >
+      {label}
+      <slot />
+    </a>
+    <script is:inline>
+      (() => {
+        const navWrapper = document.currentScript.parentElement;
+        const sparkleLayerNav = navWrapper.querySelector('.nav-sparkles');
+        function navSparkles() {
+          if (!sparkleLayerNav) return;
+          sparkleLayerNav.innerHTML = '';
+          const count = 2 + Math.floor(Math.random() * 2);
+          for (let i = 0; i < count; i++) {
+            const size = 2 + Math.random() * 3;
+            const left = Math.random() * 100;
+            const delay = Math.random() * 0.5;
+            const sparkle = document.createElement('span');
+            sparkle.style.position = 'absolute';
+            sparkle.style.left = `${left}%`;
+            sparkle.style.bottom = `${2 + Math.random() * 4}px`;
+            sparkle.style.width = `${size}px`;
+            sparkle.style.height = `${size}px`;
+            sparkle.style.borderRadius = '50%';
+            sparkle.style.background = 'rgba(255,255,255,0.6)';
+            sparkle.style.boxShadow = '0 0 6px 1px #fff';
+            sparkle.style.opacity = '0';
+            sparkle.style.pointerEvents = 'none';
+            sparkle.style.animation = `sparkle-fade 1.2s ${delay}s linear forwards`;
+            sparkleLayerNav.appendChild(sparkle);
+          }
+        }
+        const btn = navWrapper.querySelector('a');
+        btn.addEventListener('mouseenter', function() {
+          sparkleLayerNav.style.display = 'block';
+          navSparkles();
+        });
+        btn.addEventListener('focus', function() {
+          sparkleLayerNav.style.display = 'block';
+          navSparkles();
+        });
+        btn.addEventListener('mouseleave', function() {
+          sparkleLayerNav.style.display = 'none';
+          sparkleLayerNav.innerHTML = '';
+        });
+        btn.addEventListener('blur', function() {
+          sparkleLayerNav.style.display = 'none';
+          sparkleLayerNav.innerHTML = '';
+        });
+      })();
+    </script>
+  </div>
+) : (
+  <a
+    href={href}
+    class={`
+      ${variant === 'primary' ? 'bg-[#262626] text-[#f2f2f2]' : ''}
+      ${variant === 'secondary' ? 'bg-[#d9d8d7] glass border-2 border-[#262626] text-[#262626] shadow-sm' : ''}
+      rounded-full px-6 py-2 transition-colors duration-200 inline-block
+      ${extraClass}
+    `.replace(/\s+/g, ' ').trim()}
+  >
+    {label}
+    <slot />
+    {icon && <span class="inline-block align-middle ml-2">{icon}</span>}
+  </a>
+)}

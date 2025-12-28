@@ -1,0 +1,34 @@
+---
+// Article: How to embed continuous improvement in your organisation
+// Usage: Place in src/content/articles/
+// Required frontmatter: title, description, pubDate, tags, author, featured, coverImage
+import BaseLayout from '../../layouts/BaseLayout.astro';
+const title = "How to embed continuous improvement in your organisation";
+const description = "Continuous improvement doesn't just happen. It needs to be nurtured with a vision to see the fantastic results that are possible.";
+const pubDate = "2025-04-22";
+const author = "Dale Rogers";
+const tags = ["Continuous Improvement"];
+const featured = false; // Set to true if this is a featured article
+const coverImage = "/images/articles/continuous-improvement.jpg"; // Update with actual image if available
+---
+<BaseLayout title={title} pubDate={pubDate} tags={tags}>
+  <h1 class="mb-6 text-4xl font-bold">{title}</h1>
+  <p class="mb-8 text-lg text-neutral-700">{description}</p>
+  <article class="prose max-w-none">
+    <h2>How to embed continuous improvement in your organisation</h2>
+    <p>Continuous improvement is an enormously powerful tool for change. It is the original growth hack. It has driven the fastest growing businesses in the world and has transformed safety and productivity in the workplace.</p>
+    <p>Successive and persistent iteration created a successful Ford lineage that traces its heritage back to the Model T.</p>
+    <p>Walmart contributes its ongoing corporate success to a culture of continuous improvement, and the Toyota Way has produced not only some of the best quality vehicles in the world but driven growth in Lean Manufacturing and Agile software development across the globe.</p>
+    <p>So with a concept that is so widely respected and transformative, how can you get started introducing continuous iteration in your business or team?</p>
+    <h3>Create your vision</h3>
+    <p>Evolution has done amazing things to create humanity. By continuously iterating genes, evolution has managed to create creatures that are successful in the harshest environments on our planet. It took mother nature millions of years and failures to get there. Your team does not have that long, the way to use iteration efficiently is by continuously improving, with purpose. Start by writing a vision statement, "have all our documents filed, and the whole team knows how and where to find what they need."</p>
+    <h3>Tell your team</h3>
+    <p>Religion has known for centuries that the way to create lasting cultural change is to make everybody stop what they are doing and reconnect with each other and the vision. Talk about the difference you are making together. Remind your team of the vision. Empower your team with explicit permission to make changes in your business</p>
+    <h3>Make it a habit</h3>
+    <p>Continuous iteration does not just happen because the boss said: "We have a culture of continuous improvement." It requires change, and change does not come about from willpower. It would help if you changed your environment to create ongoing sustainable growth. So pull down those ditzy motivational posters and build a Kanban board. Studies have shown physical reminders are better than digital reminders and task lists at promoting continuous improvement habits.</p>
+    <h3>Learn to fail</h3>
+    <p>Not every iteration will be successful. Failure is a part of the change, accept it into your business. Create a list of failed ideas, talk about your failures regularly with your team and encourage everybody to contribute to a list of bad ideas. Your acceptance of failure and your bad ideas will remind your team what doesn't work and inspire them to revisit the bad ideas from a different perspective in another way. Maybe that terrible idea is the beginning of a great one.</p>
+    <h3>Start again</h3>
+    <p>Continuous improvement never ends, but like riding a unicycle, it can fall over. Don't be afraid to start again, at the beginning if you need to. Revisit your vision regularly and start over. Reset your vision, stretch your imagination and apply the things you learned along the way. Apply your knowledge of success and failure to your vision and let it continuously improve. Be persistent and iterate again.</p>
+  </article>
+</BaseLayout> 

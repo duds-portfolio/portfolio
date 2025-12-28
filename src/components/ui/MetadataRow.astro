@@ -1,0 +1,12 @@
+---
+import TagList from './TagList.astro';
+export interface Props {
+  pubDate?: string;
+  tags?: string[];
+}
+const { pubDate, tags } = Astro.props;
+---
+<div class="flex flex-wrap items-center gap-4 text-sm text-gray-500 mt-2">
+  {pubDate && <span>Published: {pubDate}</span>}
+  {tags && tags.length > 0 && <TagList tags={tags} />}
+</div> 

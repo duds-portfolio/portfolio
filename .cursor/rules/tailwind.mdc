@@ -1,0 +1,73 @@
+---
+description: Tailwind CSS v4 usage standards for Astro projects
+globs: 
+alwaysApply: false
+---
+# Tailwind CSS v4 Standards for Astro (Updated)
+
+## 1. Project Setup and Structure
+
+src/
+├── styles/
+│ └── global.css # Main Tailwind entrypoint
+├── pages/
+├── components/
+tailwind.config.ts
+
+- Use `src/styles/global.css` as the entrypoint for Tailwind layers
+- Only define custom styles in this file or inline in `.astro` components
+
+## 2. Configuration Requirements
+
+- Use `@tailwind base;`, `@tailwind components;`, `@tailwind utilities;`
+- Add plugins with `@import` at the top of `global.css`
+- Use `@layer components {}` and `@layer utilities {}` to define custom styles
+- **Use `@apply` and custom classes only for DRY-ing repeated utility patterns that cannot be reasonably expressed inline.**
+- **All custom styling should use Tailwind utility classes directly in markup wherever possible.**
+- **Code review should reject custom classes that simply wrap a single utility or a small set of utilities.**
+
+**Example `global.css`:**
+
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "@tailwindcss/forms";
+@import "@tailwindcss/typography";
+
+@layer components {
+  /* Only for complex, repeated patterns */
+  .btn-primary {
+    @apply px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700;
+  }
+}
+
+@layer utilities {
+  .scrollbar-hide {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+```
+
+## 3. Development Guidelines
+Tailwind should be integrated via the Astro build pipeline (`astro add tailwind`)
+- Never write to or modify generated CSS output directly
+- **Use utility classes over custom CSS wherever possible**
+- Customise using `tailwind.config.ts`, not multiple scattered files
+
+## 4. Component Usage
+- **Keep Tailwind usage inline in .astro templates unless a pattern is repeated in 3+ places**
+- Don't overuse @apply — only apply when utility repetition becomes noise
+- Use semantic and accessible markup with Tailwind utilities layered on top
+
+## 5. Plugin Policy
+Only include plugins that:
+- Provide semantic layout or styling improvements (e.g. `@tailwindcss/forms`)
+- Are required by your design system or accessibility features
+- Are documented in the `README.md` or `tailwind.config.ts`
+
