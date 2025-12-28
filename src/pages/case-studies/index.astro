@@ -1,0 +1,44 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { getCollection } from 'astro:content';
+import { CaseStudies } from '@/components/sections/case-studies';
+
+const caseStudies = await getCollection('caseStudies');
+
+// Sort: featured first, then by year (newest first), then by title
+const sortedCaseStudies = caseStudies.sort((a, b) => {
+  if (a.data.featured && !b.data.featured) return -1;
+  if (!a.data.featured && b.data.featured) return 1;
+  // Sort by year (newest first)
+  const yearA = parseInt(a.data.year) || 0;
+  const yearB = parseInt(b.data.year) || 0;
+  if (yearB !== yearA) return yearB - yearA;
+  // Then by title
+  return a.data.title.localeCompare(b.data.title);
+});
+
+// Serialize for client component
+const serializedCaseStudies = sortedCaseStudies.map(cs => ({
+  id: cs.id,
+  data: {
+    title: cs.data.title,
+    description: cs.data.description,
+    client: cs.data.client,
+    industry: cs.data.industry,
+    category: cs.data.category,
+    featured: cs.data.featured,
+    tags: cs.data.tags || [],
+    challenge: cs.data.challenge,
+    year: cs.data.year,
+    duration: cs.data.duration,
+  }
+}));
+---
+
+<DefaultLayout 
+  title="Case Studies | Dale Rogers" 
+  description="Service design case studies for government, regulatory, and complex organisations. Policy translation, service blueprinting, and governance design."
+>
+  <CaseStudies caseStudies={serializedCaseStudies} client:only='react' />
+</DefaultLayout>
+

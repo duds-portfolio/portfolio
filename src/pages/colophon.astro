@@ -1,0 +1,145 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+---
+
+<DefaultLayout 
+  title="Colophon | Dale Rogers" 
+  description="Technical details about this website—technology stack, design tools, and development practices."
+>
+  <article class="container max-w-4xl py-16 md:py-24">
+    <header class="mb-12">
+      <h1 class="text-4xl font-bold tracking-tight md:text-5xl mb-4">
+        Colophon
+      </h1>
+      <p class="text-muted-foreground text-lg">
+        Want to take a look under the hood of this website? Wonder no more!
+      </p>
+    </header>
+
+    <div class="prose prose-slate dark:prose-invert max-w-none space-y-12">
+      <section>
+        <h2>About This Site</h2>
+        <p>
+          This portfolio website showcases my service design work, case studies, and articles. 
+          It's built with modern web technologies focused on performance, accessibility, and maintainability.
+        </p>
+      </section>
+
+      <section>
+        <h2>Technology Stack</h2>
+        <ul>
+          <li>
+            <strong>Framework:</strong> Built with <a href="https://astro.build" target="_blank" rel="noopener noreferrer">Astro</a>, 
+            a modern static site generator that delivers lightning-fast performance. Astro provides better performance 
+            and security for a portfolio site compared to traditional CMS solutions.
+          </li>
+          <li>
+            <strong>UI Components:</strong> <a href="https://ui.shadcn.com" target="_blank" rel="noopener noreferrer">Shadcn/UI</a> 
+            components built on <a href="https://www.radix-ui.com" target="_blank" rel="noopener noreferrer">Radix UI</a> 
+            primitives for accessible, customizable components.
+          </li>
+          <li>
+            <strong>Styling:</strong> <a href="https://tailwindcss.com" target="_blank" rel="noopener noreferrer">Tailwind CSS</a> 
+            for utility-first styling and consistent design. The theme is based on the 
+            <a href="https://www.shadcnblocks.com" target="_blank" rel="noopener noreferrer">Shadcnblocks Streamline</a> theme.
+          </li>
+          <li>
+            <strong>Typography:</strong> Inter and Inter Tight font families for optimal readability and performance.
+          </li>
+          <li>
+            <strong>Icons:</strong> <a href="https://lucide.dev" target="_blank" rel="noopener noreferrer">Lucide</a> 
+            icon library for crisp, scalable graphics.
+          </li>
+          <li>
+            <strong>Content Management:</strong> Astro Content Collections with Zod schema validation for type-safe content.
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Development Tools</h2>
+        <ul>
+          <li>
+            <strong>Version Control:</strong> <a href="https://git-scm.com" target="_blank" rel="noopener noreferrer">Git</a> 
+            for source control management
+          </li>
+          <li>
+            <strong>Code Quality:</strong> <a href="https://eslint.org" target="_blank" rel="noopener noreferrer">ESLint</a> 
+            and <a href="https://prettier.io" target="_blank" rel="noopener noreferrer">Prettier</a> 
+            for consistent code style
+          </li>
+          <li>
+            <strong>Development:</strong> <a href="https://code.visualstudio.com" target="_blank" rel="noopener noreferrer">VS Code</a> 
+            with Astro and TypeScript extensions
+          </li>
+          <li>
+            <strong>Type Safety:</strong> <a href="https://www.typescriptlang.org" target="_blank" rel="noopener noreferrer">TypeScript</a> 
+            for type-safe development
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Design Principles</h2>
+        <ul>
+          <li>
+            <strong>Accessibility:</strong> <a href="https://www.w3.org/WAI/standards-guidelines/wcag/" target="_blank" rel="noopener noreferrer">WCAG 2.1</a> 
+            guidelines followed for inclusive design
+          </li>
+          <li>
+            <strong>Performance:</strong> Optimized assets, minimal JavaScript, and static site generation for fast loading
+          </li>
+          <li>
+            <strong>Responsive:</strong> Mobile-first approach ensuring great experience on all devices
+          </li>
+          <li>
+            <strong>Dark Mode:</strong> Carefully crafted dark theme for reduced eye strain
+          </li>
+          <li>
+            <strong>SEO:</strong> Semantic HTML, proper meta tags, and sitemap generation
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Content</h2>
+        <ul>
+          <li>
+            <strong>Articles:</strong> 15 articles on service design, digital strategy, and technology
+          </li>
+          <li>
+            <strong>Case Studies:</strong> 10 case studies showcasing work across government, regulatory, and enterprise sectors
+          </li>
+          <li>
+            <strong>Content Format:</strong> Markdown files managed through Astro Content Collections
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Open Source</h2>
+        <p>
+          This site's source code is available on 
+          <a href="https://github.com/dale-rogers/portfolio" target="_blank" rel="noopener noreferrer">GitHub</a>. 
+          Feel free to explore how it's built or use it as inspiration for your own projects.
+        </p>
+      </section>
+
+      <section>
+        <h2>Attributions</h2>
+        <ul>
+          <li>
+            Theme based on <a href="https://www.shadcnblocks.com" target="_blank" rel="noopener noreferrer">Shadcnblocks Streamline</a>
+          </li>
+          <li>
+            Icons from <a href="https://lucide.dev" target="_blank" rel="noopener noreferrer">Lucide</a>
+          </li>
+          <li>
+            Fonts: <a href="https://rsms.me/inter/" target="_blank" rel="noopener noreferrer">Inter</a> and Inter Tight
+          </li>
+        </ul>
+      </section>
+    </div>
+  </article>
+</DefaultLayout>
+

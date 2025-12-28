@@ -1,0 +1,45 @@
+---
+import BaseHead from '@/components/BaseHead.astro';
+import { Navbar } from '@/components/sections/navbar';
+import { Footer } from '@/components/sections/footer';
+import { getCollection } from 'astro:content';
+
+const { title, description } = Astro.props;
+
+// Fetch blog posts and case studies for search
+const blogPosts = await getCollection('blog');
+const caseStudies = await getCollection('caseStudies');
+
+// Transform to search-friendly format
+const searchBlogPosts = blogPosts.map((post) => ({
+  id: post.id,
+  title: post.data.title,
+  description: post.data.description,
+  tags: [],
+}));
+
+const searchCaseStudies = caseStudies.map((study) => ({
+  id: study.id,
+  title: study.data.title,
+  description: study.data.description,
+  tags: study.data.tags || [],
+  category: study.data.category,
+}));
+---
+
+<html lang="en">
+    <head>		
+        <BaseHead title={title} description={description}  />
+    </head>
+    <body class={`h-screen antialiased`}
+    >
+        <Navbar 
+          currentPage={Astro.url.pathname} 
+          blogPosts={searchBlogPosts}
+          caseStudies={searchCaseStudies}
+          client:only='react' 
+        />
+        <main><slot /></main>
+        <Footer />
+    </body>
+</html>

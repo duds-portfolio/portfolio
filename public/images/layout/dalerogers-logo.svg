@@ -1,0 +1,12 @@
+<!-- 
+  LOCKED: This logo is final and should not be modified.
+  Dimensions: 96x32 (3:1 ratio)
+  Design: Shift key chevron positioned on the left
+  DO NOT EDIT OR AMEND THIS FILE
+-->
+<svg width="96" height="32" viewBox="0 0 96 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Shift Key Logo -->
+  <rect width="96" height="32" rx="6" fill="currentColor" opacity="0.08"/>
+  <!-- Shift key with upward arrow - positioned on the left -->
+  <path d="M16 8 L10 16 L13 16 L13 22 L19 22 L19 16 L22 16 Z" fill="currentColor" opacity="0.9"/>
+</svg>

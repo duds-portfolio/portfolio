@@ -1,0 +1,11 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { PortfolioAbout } from '@/components/sections/portfolio-about';
+---
+
+<DefaultLayout 
+  title="About | Dale Rogers" 
+  description="15 years translating strategy into executable service models for government and complex organisations. Service designer specialising in policy translation, regulatory service design, and complex multi-stakeholder systems."
+>
+  <PortfolioAbout client:only='react' />
+</DefaultLayout>

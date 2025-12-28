@@ -1,0 +1,114 @@
+{
+  "folders": [
+    {
+      "name": "Portfolio",
+      "path": ".",
+    },
+  ],
+  "settings": {
+    "typescript.preferences.importModuleSpecifier": "relative",
+    "typescript.suggest.autoImports": true,
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "explicit",
+      "source.organizeImports": "explicit",
+    },
+    "files.exclude": {
+      "**/node_modules": true,
+      "**/.astro": true,
+      "**/dist": true,
+      "**/.turbo": true,
+      "**/coverage": true,
+    },
+    "search.exclude": {
+      "**/node_modules": true,
+      "**/.astro": true,
+      "**/dist": true,
+      "**/.turbo": true,
+      "**/coverage": true,
+    },
+    "[astro]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode",
+    },
+    "[typescript]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode",
+    },
+    "[typescriptreact]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode",
+    },
+    "[javascript]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode",
+    },
+    "[javascriptreact]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode",
+    },
+    "[json]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode",
+    },
+    "[markdown]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode",
+      "editor.wordWrap": "on",
+    },
+    "files.associations": {
+      "*.astro": "astro",
+    },
+    "tailwindCSS.experimental.classRegex": [
+      ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+      ["cn\\(([^)]*)\\)", "(?:'|\"|`)([^\"'`]*)(?:'|\"|`)"],
+    ],
+    "tailwindCSS.includeLanguages": {
+      "astro": "html",
+    },
+    "debug.internalConsoleOptions": "neverOpen",
+  },
+  "extensions": {
+    "recommendations": [
+      "astro-build.astro-vscode",
+      "unifiedjs.vscode-mdx",
+      "esbenp.prettier-vscode",
+      "bradlc.vscode-tailwindcss",
+      "dbaeumer.vscode-eslint",
+      "ms-vscode.vscode-typescript-next",
+    ],
+  },
+  "tasks": {
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "dev",
+        "type": "npm",
+        "script": "dev",
+        "problemMatcher": [],
+        "presentation": {
+          "reveal": "always",
+          "panel": "new",
+        },
+        "runOptions": {
+          "runOn": "default",
+        },
+      },
+      {
+        "label": "build",
+        "type": "npm",
+        "script": "build",
+        "problemMatcher": [],
+        "presentation": {
+          "reveal": "always",
+          "panel": "new",
+        },
+      },
+      {
+        "label": "preview",
+        "type": "npm",
+        "script": "preview",
+        "problemMatcher": [],
+        "presentation": {
+          "reveal": "always",
+          "panel": "new",
+        },
+      },
+    ],
+  },
+}

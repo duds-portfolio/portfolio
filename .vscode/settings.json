@@ -1,0 +1,12 @@
+{
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "azureFunctions.deploySubpath": "azure-functions",
+  "azureFunctions.scmDoBuildDuringDeployment": true,
+  "azureFunctions.pythonVenv": ".venv",
+  "azureFunctions.projectLanguage": "Python",
+  "azureFunctions.projectRuntime": "~4"
+}

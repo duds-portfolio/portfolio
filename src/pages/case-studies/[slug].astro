@@ -1,0 +1,77 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { getCollection, render } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+
+export async function getStaticPaths() {
+  const caseStudies = await getCollection('caseStudies');
+  return caseStudies.map((caseStudy) => ({
+    params: { slug: caseStudy.id },
+    props: caseStudy,
+  }));
+}
+
+type Props = CollectionEntry<'caseStudies'>;
+
+const caseStudy = Astro.props;
+const { Content } = await render(caseStudy);
+---
+
+<DefaultLayout 
+  title={`${caseStudy.data.title} | Dale Rogers`}
+  description={caseStudy.data.description}
+>
+  <article class="container max-w-4xl py-16 md:py-24">
+    <header class="mb-12">
+      <div class="mb-6 flex flex-wrap gap-2">
+        <span class="inline-flex items-center rounded-md border px-2 py-0.5 text-xs font-medium">
+          {caseStudy.data.category}
+        </span>
+        {caseStudy.data.featured && (
+          <span class="inline-flex items-center rounded-md border border-primary/30 bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary">
+            Featured Project
+          </span>
+        )}
+      </div>
+      
+      <h1 class="text-4xl font-bold tracking-tight md:text-5xl mb-4">
+        {caseStudy.data.title}
+      </h1>
+      
+      <div class="text-muted-foreground space-y-2 mb-6">
+        <p><strong>Client:</strong> {caseStudy.data.client}</p>
+        <p><strong>Industry:</strong> {caseStudy.data.industry}</p>
+        <p><strong>Duration:</strong> {caseStudy.data.duration}</p>
+        <p><strong>Year:</strong> {caseStudy.data.year}</p>
+      </div>
+      
+      <p class="text-lg text-muted-foreground mb-6">
+        {caseStudy.data.description}
+      </p>
+      
+      {caseStudy.data.tags && caseStudy.data.tags.length > 0 && (
+        <div class="flex flex-wrap gap-2">
+          {caseStudy.data.tags.map((tag) => (
+            <span class="inline-flex items-center rounded-md border px-2 py-0.5 text-xs font-medium">
+              {tag}
+            </span>
+          ))}
+        </div>
+      )}
+    </header>
+
+    <div class="prose prose-slate dark:prose-invert max-w-none">
+      <Content />
+    </div>
+
+    <footer class="mt-12 pt-8 border-t">
+      <a 
+        href="/case-studies" 
+        class="inline-flex items-center text-sm font-medium text-primary hover:underline"
+      >
+        ← Back to all case studies
+      </a>
+    </footer>
+  </article>
+</DefaultLayout>
+

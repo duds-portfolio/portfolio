@@ -1,0 +1,30 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { getCollection } from 'astro:content';
+import { PortfolioHero } from '@/components/sections/portfolio-hero';
+import { PortfolioTrustStrip } from '@/components/sections/portfolio-trust-strip';
+import { PortfolioServices } from '@/components/sections/portfolio-services';
+import { PortfolioCaseStudiesCategory } from '@/components/sections/portfolio-case-studies-category';
+import { PortfolioApproach } from '@/components/sections/portfolio-approach';
+import { PortfolioResults } from '@/components/sections/portfolio-results';
+import { PortfolioTestimonials } from '@/components/sections/portfolio-testimonials';
+import { PortfolioAbout } from '@/components/sections/portfolio-about';
+import { PortfolioCTA } from '@/components/sections/portfolio-cta';
+
+const caseStudies = await getCollection('caseStudies');
+---
+
+<DefaultLayout 
+  title="Dale Rogers | Service Design" 
+  description="Service design for government and complex organisations. Translating strategy into executable service models—policy, regulation, and frameworks for consistent delivery. Canberra-based service designer with 15 years experience."
+>
+  <PortfolioHero client:only='react' />
+  <PortfolioTrustStrip client:only='react' />
+  <PortfolioServices client:only='react' />
+  <PortfolioCaseStudiesCategory caseStudies={caseStudies} client:only='react' />
+  <PortfolioApproach client:only='react' />
+  <PortfolioResults client:only='react' />
+  <PortfolioTestimonials client:only='react' />
+  <PortfolioAbout client:only='react' />
+  <PortfolioCTA client:only='react' />
+</DefaultLayout>

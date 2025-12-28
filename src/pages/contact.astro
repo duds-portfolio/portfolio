@@ -1,0 +1,11 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { PortfolioContact } from '@/components/sections/portfolio-contact';
+---
+
+<DefaultLayout 
+  title="Contact | Dale Rogers" 
+  description="Get in touch to discuss your service design project. Email, phone, or schedule a call. Typically respond within 24 hours."
+>
+  <PortfolioContact client:only='react' />
+</DefaultLayout>

@@ -1,0 +1,11 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "FUNCTIONS_WORKER_RUNTIME": "python",
+    "SENDGRID_API_KEY": "your_sendgrid_api_key_here",
+    "SENDGRID_FROM_EMAIL": "noreply@dalerogers.com.au",
+    "CONTACT_EMAIL": "hello@dalerogers.com.au"
+  }
+}
+
