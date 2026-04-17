@@ -42,7 +42,7 @@ export function searchItems(
         id: post.id,
         title: post.title,
         description: post.description,
-        url: `/articles/${post.id}/`,
+        url: `/articles/${post.id}`,
         tags: post.tags,
       });
     }
@@ -57,7 +57,7 @@ export function searchItems(
         id: study.id,
         title: study.title,
         description: study.description,
-        url: `/case-studies/${study.id}/`,
+        url: `/case-studies/${study.id}`,
         category: study.category,
         tags: study.tags,
       });

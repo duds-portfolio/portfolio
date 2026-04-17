@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { FileText, Users, Settings, Target, Map, Workflow } from "lucide-react";
 
@@ -20,7 +21,7 @@ const services = [
   },
   {
     title: "Systems Thinking",
-    description: "Designing services that work with imperfect people, processes, and technology. Critical control thinking from mining informs approaches to resilience and risk.",
+    description: "Designing services that work with imperfect people, processes, and technology. Critical control and human centred design thinking inform approaches to resilience and risk.",
     keywords: ["Designing for imperfect systems", "Error-proofing", "Risk frameworks", "Change management"],
     icon: Workflow,
     gradient: "from-green-500/10 to-emerald-500/5",

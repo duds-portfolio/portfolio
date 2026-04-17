@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -202,7 +202,11 @@ export const PortfolioContact = () => {
                 <h3 className="text-xl font-semibold mb-6">Send a Message</h3>
 
                 {submitted && (
-                  <div className="mb-6 p-4 bg-primary/10 border border-primary/20 rounded-md">
+                  <div
+                    className="mb-6 p-4 bg-primary/10 border border-primary/20 rounded-md"
+                    role="status"
+                    aria-live="polite"
+                  >
                     <p className="text-primary font-medium text-sm">
                       Thank you! Your message has been sent. I'll respond within 24 hours.
                     </p>
@@ -219,9 +223,13 @@ export const PortfolioContact = () => {
                       type="text"
                       {...register("name", { required: "Name is required" })}
                       placeholder="Your name"
+                      aria-invalid={!!errors.name}
+                      aria-describedby={errors.name ? "name-error" : undefined}
                     />
                     {errors.name && (
-                      <p className="text-sm text-destructive">{errors.name.message}</p>
+                      <p id="name-error" className="text-sm text-destructive" role="alert">
+                        {errors.name.message}
+                      </p>
                     )}
                   </div>
 
@@ -240,9 +248,13 @@ export const PortfolioContact = () => {
                         },
                       })}
                       placeholder="your.email@example.com"
+                      aria-invalid={!!errors.email}
+                      aria-describedby={errors.email ? "email-error" : undefined}
                     />
                     {errors.email && (
-                      <p className="text-sm text-destructive">{errors.email.message}</p>
+                      <p id="email-error" className="text-sm text-destructive" role="alert">
+                        {errors.email.message}
+                      </p>
                     )}
                   </div>
 
@@ -267,9 +279,13 @@ export const PortfolioContact = () => {
                       {...register("message", { required: "Message is required" })}
                       placeholder="Tell me about your project..."
                       className="min-h-[120px] resize-none"
+                      aria-invalid={!!errors.message}
+                      aria-describedby={errors.message ? "message-error" : undefined}
                     />
                     {errors.message && (
-                      <p className="text-sm text-destructive">{errors.message.message}</p>
+                      <p id="message-error" className="text-sm text-destructive" role="alert">
+                        {errors.message.message}
+                      </p>
                     )}
                   </div>
 

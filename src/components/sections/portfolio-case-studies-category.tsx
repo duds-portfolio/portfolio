@@ -1,8 +1,10 @@
 "use client";
 
+import React from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { TagList } from "@/components/ui/tag-list";
 import { ArrowRight } from "lucide-react";
 
 interface CaseStudyCategoryProps {
@@ -18,7 +20,7 @@ const categoryLabels: Record<string, string> = {
   policy: "Policy",
 };
 
-const categoryOrder = ["government", "regulatory", "enterprise"];
+const categoryOrder = ["government", "regulatory", "service-design"];
 
 export const PortfolioCaseStudiesCategory = ({ caseStudies }: CaseStudyCategoryProps) => {
   // Group case studies by category and select one per category
@@ -39,7 +41,7 @@ export const PortfolioCaseStudiesCategory = ({ caseStudies }: CaseStudyCategoryP
             Case Studies
           </h2>
           <p className="text-muted-foreground text-lg md:text-xl">
-            Service design for government, regulatory, and enterprise organisations
+            Service design for government, regulatory, and complex organisations
           </p>
         </div>
 
@@ -49,7 +51,11 @@ export const PortfolioCaseStudiesCategory = ({ caseStudies }: CaseStudyCategoryP
             
             return (
               <Card key={caseStudy.id} className="overflow-hidden group hover:shadow-lg transition-shadow">
-                <a href={`/case-studies/${caseStudy.id}/`} className="block">
+                <a
+                  href={`/case-studies/${caseStudy.id}`}
+                  className="block focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg"
+                  aria-label={`View case study: ${caseStudy.data.title}`}
+                >
                   <div className="aspect-video bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center group-hover:from-primary/30 group-hover:to-primary/10 transition-colors">
                     <div className="text-5xl font-bold text-primary/20 group-hover:text-primary/30 transition-colors">
                       {caseStudy.data.client.charAt(0)}
@@ -74,13 +80,16 @@ export const PortfolioCaseStudiesCategory = ({ caseStudies }: CaseStudyCategoryP
                     <p className="text-muted-foreground mb-4 line-clamp-3 text-sm">
                       {caseStudy.data.description}
                     </p>
-                    <div className="flex flex-wrap gap-2">
-                      {caseStudy.data.tags.slice(0, 2).map((tag: string) => (
-                        <Badge key={tag} variant="outline" className="text-xs">
-                          {tag}
-                        </Badge>
-                      ))}
-                    </div>
+                    {caseStudy.data.tags && caseStudy.data.tags.length > 0 && (
+                      <div className="mb-4">
+                        <TagList 
+                          tags={caseStudy.data.tags} 
+                          variant="outline" 
+                          size="sm" 
+                          linkToTags={false}
+                        />
+                      </div>
+                    )}
                     <div className="mt-4 text-xs text-muted-foreground">
                       <p><strong>Client:</strong> {caseStudy.data.client}</p>
                       <p><strong>Year:</strong> {caseStudy.data.year}</p>

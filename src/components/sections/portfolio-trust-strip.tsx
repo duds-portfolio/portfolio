@@ -1,5 +1,7 @@
 "use client";
 
+import React from "react";
+
 // Client logos for trust strip
 // Note: These are placeholder text - replace with actual logo images when available
 const CLIENTS = [

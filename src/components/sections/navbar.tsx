@@ -38,6 +38,50 @@ export const Navbar = ({ currentPage, blogPosts = [], caseStudies = [] }: Navbar
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const pathname = currentPage;
 
+  // Dynamically match header background to first section
+  useEffect(() => {
+    const header = document.getElementById("site-header");
+    if (!header) return;
+
+    const updateHeaderBackground = () => {
+      // Find the first section or main content area
+      // Try multiple selectors to catch React components that load asynchronously
+      const firstSection = document.querySelector(
+        "main > section:first-of-type, main > div > section:first-of-type, section:first-of-type, [id^='about'], [id^='contact'], [id^='services']"
+      );
+      
+      if (!firstSection) {
+        // Retry after a short delay for React components
+        setTimeout(updateHeaderBackground, 100);
+        return;
+      }
+
+      // Get computed background color
+      const computedStyle = window.getComputedStyle(firstSection);
+      const bgColor = computedStyle.backgroundColor;
+      
+      // Only apply if we got a valid color (not transparent)
+      if (bgColor && bgColor !== "rgba(0, 0, 0, 0)" && bgColor !== "transparent") {
+        header.style.backgroundColor = bgColor;
+      }
+    };
+
+    // Initial attempt
+    updateHeaderBackground();
+
+    // Also listen for DOM changes in case sections load later
+    const observer = new MutationObserver(() => {
+      updateHeaderBackground();
+    });
+
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+    });
+
+    return () => observer.disconnect();
+  }, [pathname]);
+
   useEffect(() => {
     if (isMenuOpen) {
       document.body.classList.add("overflow-hidden");
@@ -76,15 +120,20 @@ export const Navbar = ({ currentPage, blogPosts = [], caseStudies = [] }: Navbar
     { label: "Contact", href: "/contact" },
   ];
 
+  // Determine background color based on first section of each page
   const bgColor =
-    pathname === "/about"
-      ? "bg-mint-50"
+    pathname === "/about" || pathname === "/contact"
+      ? "bg-muted" // About and Contact pages use bg-muted
       : ["/", "/faq", "/signup", "/login"].includes(pathname)
-        ? "bg-sand-100"
-        : "bg-background";
+        ? "bg-sand-100" // Homepage and other pages use bg-sand-100
+        : "bg-background"; // Default fallback
 
   return (
-    <header className={cn("relative z-50", bgColor)}>
+    <header 
+      id="site-header" 
+      className={cn("relative z-50 transition-colors duration-300", bgColor)}
+      data-header-bg={bgColor}
+    >
       <div className="max-w-9xl container">
         <div className="flex items-center justify-between py-3">
           {/* Logo */}

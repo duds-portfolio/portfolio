@@ -1,8 +1,10 @@
 "use client";
 
+import React from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { TagList } from "@/components/ui/tag-list";
 import { ArrowRight } from "lucide-react";
 
 interface FeaturedWorkProps {
@@ -43,7 +45,7 @@ export const PortfolioFeaturedWork = ({ caseStudies }: FeaturedWorkProps) => {
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 mb-8">
           {featured.map((caseStudy) => (
             <Card key={caseStudy.id} className="overflow-hidden border-2 border-primary/20">
-              <a href={`/case-studies/${caseStudy.id}/`} className="block">
+              <a href={`/case-studies/${caseStudy.id}`} className="block">
                 <div className="aspect-video bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center">
                   <div className="text-6xl font-bold text-primary/10">
                     {caseStudy.data.client.charAt(0)}
@@ -63,15 +65,18 @@ export const PortfolioFeaturedWork = ({ caseStudies }: FeaturedWorkProps) => {
                   <p className="text-muted-foreground mb-4 line-clamp-3">
                     {caseStudy.data.description}
                   </p>
-                  <div className="flex flex-wrap gap-2 mb-4">
+                  <div className="flex flex-wrap gap-2 mb-4 items-center">
                     <Badge variant="secondary" className="text-xs">
                       {categoryLabels[caseStudy.data.category] || caseStudy.data.category}
                     </Badge>
-                    {caseStudy.data.tags.slice(0, 2).map((tag: string) => (
-                      <Badge key={tag} variant="outline" className="text-xs">
-                        {tag}
-                      </Badge>
-                    ))}
+                    {caseStudy.data.tags && caseStudy.data.tags.length > 0 && (
+                      <TagList 
+                        tags={caseStudy.data.tags} 
+                        variant="outline" 
+                        size="sm" 
+                        linkToTags={false}
+                      />
+                    )}
                   </div>
                 </CardContent>
               </a>
@@ -80,7 +85,7 @@ export const PortfolioFeaturedWork = ({ caseStudies }: FeaturedWorkProps) => {
 
           {additional.map((caseStudy) => (
             <Card key={caseStudy.id} className="overflow-hidden">
-              <a href={`/case-studies/${caseStudy.id}/`} className="block">
+              <a href={`/case-studies/${caseStudy.id}`} className="block">
                 <div className="aspect-video bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center">
                   <div className="text-5xl font-bold text-primary/10">
                     {caseStudy.data.client.charAt(0)}

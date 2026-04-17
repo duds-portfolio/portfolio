@@ -1,7 +1,5 @@
 import { Linkedin, Mail } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
-
 const navigation = [
   {
     title: "Services",
@@ -23,6 +21,7 @@ const navigation = [
     links: [
       { name: "Case Studies", href: "/case-studies" },
       { name: "Articles", href: "/articles" },
+      { name: "Tags", href: "/tags" },
     ],
   },
   {
@@ -44,14 +43,6 @@ export const Footer = () => {
   return (
     <footer className="bg-primary text-primary-foreground">
       <div className="bg-primary">
-        <div className="border-primary-foreground/20 mx-auto flex max-w-[95vw] flex-col items-center border-b py-10 text-center md:py-14 lg:py-20">
-          <h2 className="max-w-[800px] text-balance text-5xl font-semibold leading-none tracking-tight lg:text-6xl">
-            Service Design | Government & Regulatory
-            <br />
-            <span className="text-primary-foreground/80">Canberra, Australia</span>
-          </h2>
-        </div>
-
         {/* Navigation Section */}
         <nav className="border-primary-foreground/20 mx-auto max-w-[95vw] border-b py-6">
           <div className="container flex flex-wrap gap-x-16 gap-y-12 md:gap-x-24 md:gap-y-16 lg:gap-x-32 lg:gap-y-20">
@@ -79,7 +70,7 @@ export const Footer = () => {
         <div className="container py-8">
           <div className="flex flex-wrap items-center justify-between gap-4">
             <p className="font-medium text-sm md:text-base">
-              © {new Date().getFullYear()} Dale Rogers | Service Design | Government & Regulatory | Canberra, Australia
+              © {new Date().getFullYear()} Dale Rogers
             </p>
             <div className="flex items-center gap-4">
               {socialLinks.map((link) => (

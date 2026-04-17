@@ -1,12 +1,13 @@
 "use client";
 
+import React, { useState, useMemo } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useState, useMemo } from "react";
+import { TagList } from "@/components/ui/tag-list";
 
 interface CaseStudy {
   id: string;
@@ -101,7 +102,7 @@ const CaseStudies = ({ caseStudies = [] }: { caseStudies?: CaseStudy[] }) => {
               </div>
 
               <div className="relative lg:col-span-3">
-                <a href={`/case-studies/${featuredCaseStudy.slug || featuredCaseStudy.id}/`} className="group block">
+                <a href={`/case-studies/${featuredCaseStudy.id}`} className="group block">
                   <Card className="overflow-hidden transition-all hover:shadow-lg">
                     <div className="relative aspect-[16/10] overflow-hidden bg-gradient-to-br from-primary/20 to-primary/5">
                       <div className="absolute inset-0 bg-black/10 transition-opacity group-hover:bg-black/20"></div>
@@ -169,7 +170,7 @@ const CaseStudies = ({ caseStudies = [] }: { caseStudies?: CaseStudy[] }) => {
             {regularCaseStudies.map((caseStudy) => (
               <a
                 key={caseStudy.id}
-                href={`/case-studies/${caseStudy.slug || caseStudy.id}/`}
+                href={`/case-studies/${caseStudy.id}`}
                 className="bg-card group flex flex-col overflow-hidden rounded-xl border transition-all hover:shadow-md"
               >
                 <div className="aspect-video overflow-hidden bg-gradient-to-br from-primary/20 to-primary/5">
@@ -208,22 +209,16 @@ const CaseStudies = ({ caseStudies = [] }: { caseStudies?: CaseStudy[] }) => {
                       </p>
                     </div>
                   </div>
-                  <div className="mt-4 flex flex-wrap gap-1">
-                    {caseStudy.data.tags.slice(0, 3).map((tag) => (
-                      <Badge
-                        key={tag}
-                        variant="outline"
-                        className="text-xs"
-                      >
-                        {tag}
-                      </Badge>
-                    ))}
-                    {caseStudy.data.tags.length > 3 && (
-                      <Badge variant="outline" className="text-xs">
-                        +{caseStudy.data.tags.length - 3}
-                      </Badge>
-                    )}
-                  </div>
+                  {caseStudy.data.tags && caseStudy.data.tags.length > 0 && (
+                    <div className="mt-4">
+                      <TagList 
+                        tags={caseStudy.data.tags} 
+                        variant="outline" 
+                        size="sm" 
+                        linkToTags={false}
+                      />
+                    </div>
+                  )}
                 </CardContent>
               </a>
             ))}

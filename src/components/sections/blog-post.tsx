@@ -4,6 +4,8 @@ import { Badge } from "@/components/ui/badge";
 import { Calendar, Clock, Share2, ChevronLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import { TagList } from "@/components/ui/tag-list";
+import { TableOfContents } from "@/components/ui/table-of-contents";
 
 const BlogPost = ({
   post,
@@ -12,7 +14,7 @@ const BlogPost = ({
   post: any;
   children: React.ReactNode;
 }) => {
-  const { title, authorName, image, pubDate, description, authorImage } =
+  const { title, authorName, image, pubDate, description, authorImage, tags } =
     post.data;
   return (
     <div className="relative">
@@ -30,6 +32,12 @@ const BlogPost = ({
               {description}
             </p>
           </div>
+
+          {tags && tags.length > 0 && (
+            <div className="flex justify-center mb-6">
+              <TagList tags={tags} variant="outline" size="sm" linkToTags={true} />
+            </div>
+          )}
 
           <div className="flex items-center justify-center">
             <div className="text-muted-foreground flex items-center gap-1.5 text-sm">
@@ -49,10 +57,16 @@ const BlogPost = ({
 
       {/* Content */}
       <div className="container">
-        <div className="mx-auto my-12 max-w-3xl space-y-12 md:my-16 lg:my-20">
-          <article className="prose prose-lg dark:prose-invert prose-headings:font-semibold prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-6 prose-p:text-base prose-p:leading-relaxed prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-img:rounded-md prose-img:shadow-sm prose-blockquote:border-l-primary prose-blockquote:bg-muted/40 prose-blockquote:py-1 prose-blockquote:not-italic max-w-none">
-            {children}
-          </article>
+        <div className="relative mx-auto my-12 max-w-7xl space-y-12 md:my-16 lg:my-20">
+          <div className="flex gap-8">
+            <article 
+              id="article-content"
+              className="prose prose-lg dark:prose-invert prose-headings:font-semibold prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-6 prose-h2:scroll-mt-24 prose-h3:scroll-mt-24 prose-h4:scroll-mt-24 prose-p:text-base prose-p:leading-relaxed prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-img:rounded-md prose-img:shadow-sm prose-blockquote:border-l-primary prose-blockquote:bg-muted/40 prose-blockquote:py-1 prose-blockquote:not-italic max-w-3xl flex-1"
+            >
+              {children}
+            </article>
+            <TableOfContents contentSelector="#article-content" />
+          </div>
 
           <Separator />
 

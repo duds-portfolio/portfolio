@@ -1,0 +1,35 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { getContentByTag } from '@/lib/tags';
+import { TagDetail } from '@/components/sections/tag-detail';
+
+export async function getStaticPaths() {
+  const { getAllTags } = await import('@/lib/tags');
+  const tags = await getAllTags();
+  
+  return tags.map((tag) => ({
+    params: { tag: tag.slug },
+  }));
+}
+
+const { tag: tagSlug } = Astro.params;
+if (!tagSlug) {
+  return Astro.redirect('/tags/');
+}
+
+const { tag, content } = await getContentByTag(tagSlug);
+
+// Serialize dates for client component
+const serializedContent = content.map(item => ({
+  ...item,
+  pubDate: item.pubDate?.toISOString(),
+}));
+---
+
+<DefaultLayout 
+  title={`${tag} | Tags | Dale Rogers`} 
+  description={`Articles and case studies tagged with ${tag}`}
+>
+  <TagDetail tag={tag} content={serializedContent} client:only='react' />
+</DefaultLayout>
+

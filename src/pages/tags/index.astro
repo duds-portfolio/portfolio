@@ -1,0 +1,20 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { getAllTags } from '@/lib/tags';
+import { TagHub } from '@/components/sections/tag-hub';
+
+const tags = await getAllTags();
+const serializedTags = tags.map(tag => ({
+  name: tag.name,
+  count: tag.count,
+  slug: tag.slug,
+}));
+---
+
+<DefaultLayout 
+  title="Tags | Dale Rogers" 
+  description="Browse all tags to find articles and case studies on service design, user experience, policy, and more."
+>
+  <TagHub tags={serializedTags} client:only='react' />
+</DefaultLayout>
+

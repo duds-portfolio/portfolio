@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Calendar, Clock } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -56,7 +57,7 @@ const BlogPosts = ({ posts = [] }: { posts?: any[] }) => {
 
             {featuredPost && (
               <div className="relative lg:col-span-3">
-                <a href={`/articles/${featuredPost.id}/`} className="group block">
+                <a href={`/articles/${featuredPost.id}`} className="group block">
                   <div className="relative aspect-[16/10] overflow-hidden rounded-2xl">
                     <div className="absolute inset-0 bg-black/10 transition-opacity group-hover:bg-black/20"></div>
                     <img
@@ -116,7 +117,7 @@ const BlogPosts = ({ posts = [] }: { posts?: any[] }) => {
             {restOfPosts.map((post) => (
               <a
                 className="bg-card group flex flex-col overflow-hidden rounded-xl border transition-all hover:shadow-md"
-                href={`/articles/${post.id}/`}
+                href={`/articles/${post.id}`}
               >
                 <div className="aspect-video overflow-hidden">
                   <img
